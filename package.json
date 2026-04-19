@@ -3,6 +3,16 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "contributors": [
+    {
+      "name": "Mohammed Absal",
+      "url": "https://github.com/mohammedabsal"
+    },
+    {
+      "name": "Madhavan",
+      "url": "https://github.com/madhavan-366"
+    }
+  ],
   "scripts": {
     "dev": "tsx server.ts",
     "start": "node server.ts",
