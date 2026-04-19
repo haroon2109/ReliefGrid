@@ -1,0 +1,154 @@
+{
+  "entities": {
+    "Request": {
+      "title": "Raw Request",
+      "description": "Initial data from WhatsApp, forms, or manual entry.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "source": { "type": "string", "enum": ["whatsapp", "google_form", "manual", "file"] },
+        "rawContent": { "type": "string", "description": "Original text or transcription" },
+        "mediaUrl": { "type": "string", "description": "Link to photo or audio" },
+        "extractedData": {
+          "type": "object",
+          "properties": {
+            "item": { "type": "string" },
+            "quantity": { "type": "number" },
+            "urgency": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+            "location": { "type": "string", "description": "PIN code or area" },
+            "lat": { "type": "number" },
+            "lng": { "type": "number" },
+            "value_inr": { "type": "number" },
+            "contact": { "type": "string" }
+          }
+        },
+        "status": { "type": "string", "enum": ["pending", "processed", "duplicate"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["source", "rawContent", "status", "createdAt"]
+    },
+    "ConsolidatedRequest": {
+      "title": "Consolidated Request",
+      "description": "De-duplicated and geocoded demand point.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "item": { "type": "string" },
+        "totalQuantity": { "type": "number" },
+        "urgency": { "type": "string" },
+        "pinCode": { "type": "string" },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" },
+        "requests": { "type": "array", "items": { "type": "string" }, "description": "IDs of raw requests merged here" },
+        "status": { "type": "string", "enum": ["open", "partially_filled", "closed"] },
+        "lastUpdated": { "type": "string", "format": "date-time" }
+      },
+      "required": ["item", "totalQuantity", "pinCode", "lat", "lng", "status"]
+    },
+    "SupplyPoint": {
+      "title": "Supply Point",
+      "description": "Warehouse or inventory location.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "location": { "type": "string" },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" },
+        "inventory": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "item": { "type": "string" },
+              "quantity": { "type": "number" }
+            }
+          }
+        }
+      },
+      "required": ["name", "lat", "lng"]
+    },
+    "Dispatch": {
+      "title": "Dispatch",
+      "description": "An allocation of supply to a request.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "requestId": { "type": "string" },
+        "supplyPointId": { "type": "string" },
+        "item": { "type": "string" },
+        "quantity": { "type": "number" },
+        "status": { "type": "string", "enum": ["dispatched", "delivered"] },
+        "driverContact": { "type": "string" },
+        "dispatchedAt": { "type": "string", "format": "date-time" },
+        "deliveredAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["requestId", "supplyPointId", "item", "quantity", "status"]
+    },
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Volunteer or Admin profile data.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "volunteer"] },
+        "skills": { "type": "array", "items": { "type": "string" } },
+        "radius": { "type": "number" },
+        "impactPoints": { "type": "number" },
+        "tasksCompleted": { "type": "number" },
+        "location": {
+          "type": "object",
+          "properties": {
+            "lat": { "type": "number" },
+            "lng": { "type": "number" }
+          }
+        }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "TaskMatch": {
+      "title": "Task Match",
+      "description": "A match between a task and a volunteer.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "taskId": { "type": "string" },
+        "volunteerId": { "type": "string" },
+        "score": { "type": "number" },
+        "distance": { "type": "number" },
+        "matchedAt": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["pending", "accepted", "declined", "completed"] }
+      },
+      "required": ["taskId", "volunteerId", "score", "status"]
+    }
+  },
+  "firestore": {
+    "/requests": {
+      "schema": "Request",
+      "description": "Raw incoming requests"
+    },
+    "/consolidated": {
+      "schema": "ConsolidatedRequest",
+      "description": "Cleaned and merged demand"
+    },
+    "/supply_points": {
+      "schema": "SupplyPoint",
+      "description": "Inventory locations"
+    },
+    "/dispatches": {
+      "schema": "Dispatch",
+      "description": "Active and past allocations"
+    },
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Individual user profile"
+    },
+    "/task_matches": {
+      "schema": "TaskMatch",
+      "description": "Matches between tasks and volunteers"
+    }
+  }
+}

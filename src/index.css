@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-3xl: 48px;
+
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-900: #0f172a;
+  
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-slate-900 bg-slate-50/30 antialiased overflow-hidden;
+  }
+}
+
+.glass-panel {
+  @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-sm;
+}
+
+.minimal-card {
+  @apply bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300;
+}
+
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-slate-200);
+}
+
+/* Native scrollbar for custom styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 rounded-full hover:bg-slate-300;
+}
+
+/* Responsive Layout Helpers */
+.mobile-bottom-nav {
+  @apply fixed bottom-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-2xl border-t border-slate-100 px-6 py-4 flex justify-between items-center md:hidden;
+}
+
+.main-content-layout {
+  @apply flex-1 flex flex-col relative overflow-hidden bg-white/50 pb-20 md:pb-0;
+}
+
+.leaflet-container {
+  @apply w-full h-full border border-slate-200 rounded-2xl overflow-hidden;
+}
+
+/* Hide Leaflet attribution watermark */
+.leaflet-control-attribution {
+  display: none !important;
+}
+.leaflet-control-zoom {
+  display: none !important;
+}
+
+/* --- Map Upgrade Styles --- */
+
+.animate-pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes glow-blue {
+  from { box-shadow: 0 0 5px rgba(37, 99, 235, 0.2); }
+  to { box-shadow: 0 0 20px rgba(37, 99, 235, 0.6); }
+}
+
+@keyframes glow-red {
+  from { box-shadow: 0 0 5px rgba(239, 68, 68, 0.2); }
+  to { box-shadow: 0 0 20px rgba(239, 68, 68, 0.6); }
+}
+
+.animate-glow-blue {
+  animation: glow-blue 2s ease-in-out infinite alternate;
+}
+
+.animate-glow-red {
+  animation: glow-red 2s ease-in-out infinite alternate;
+}
+
+.glass-panel-map {
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.command-bridge {
+  background: rgba(15, 23, 42, 0.9);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.leaflet-popup-content-wrapper {
+  background: rgba(255, 255, 255, 0.95) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  backdrop-filter: blur(12px) !important;
+  border-radius: 16px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+
+.leaflet-popup-tip {
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+
+
+.shadow-soft-glow {
+  box-shadow: 0 0 15px rgba(15, 23, 42, 0.3);
+}
+
+.shadow-glow-blue {
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.3);
+}

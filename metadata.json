@@ -1,0 +1,5 @@
+{
+  "name": "ReliefGrid",
+  "description": "Smart resource allocation platform for Indian NGOs using Gemini AI for multi-modal ingestion and de-duplication.",
+  "requestFramePermissions": ["geolocation", "microphone"]
+}
