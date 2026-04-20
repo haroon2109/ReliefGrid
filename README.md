@@ -1,51 +1,75 @@
-# ReliefGRID 
-###  AI-Powered Unified Aid Logistics
+# 🌍 ReliefGRID
+**AI-Powered Unified Aid Logistics**
 
+[![Google Solution Challenge 2026](https://img.shields.io/badge/Google-Solution_Challenge-blue)](#)
+[![Powered by Gemini](https://img.shields.io/badge/Powered%20by-Gemini_1.5_Flash-purple)](#)
+[![Status](https://img.shields.io/badge/Status-MVP_Live-green)](#)
 
-**ReliefGRID** is an intelligence-driven logistics platform designed to bridge the gap between donors, NGOs, and ground-level field operations. ReliefGRID centralizes fragmented data, providing a single source of truth for resource allocation during disasters.
-
----
-
-## 🧭 The Vision
-Traditional disaster relief often suffers from overlapping efforts and "dark spots." 
-- **Information Asymmetry**: NGOs often lack local situational awareness.
-- **Data Ingestion Bottlenecks**: Critical needs are often trapped in voice notes or paper surveys.
-- **Lack of Transparency**: Donors lose track of where contributions end up.
-
-ReliefGRID solves this by **automating field intel ingestion** and providing **real-time geospatial visualization** of demand saturation.
+*ReliefGRID is an intelligence-driven logistics platform designed to bridge the gap between donors, NGOs, and ground-level field operations. We centralize fragmented data, providing a single source of truth for resource allocation during disasters.*
 
 ---
 
-## 🛠️ Core Capabilities
+## 🎥 Quick Links for Judges
+* **Live MVP:** [Link to working prototype]
+* **Pitch Video:** [Link to YouTube demo]
+* **Presentation Deck:** [Link to PDF]
 
-### 🎙️ Multimodal Intel Ingestion
-ReliefGRID uses **Gemini 1.5 Flash** to extract actionable data from unstructured inputs:
-- **Voice-to-Task**: Processing voice notes with regional language support.
-- **Paper-to-Digital**: AI-powered OCR for handwritten field surveys.
-- **Messaging Integration**: Direct ingestion from WhatsApp and field reports.
+*(Drop your "Overwhelmed Volunteer" graphic or Dashboard Mockup image right here!)*
+`![ReliefGrid Dashboard](./assets/dashboard_mockup.png)`
 
-### 🧠 Smart Matching & Deduplication
-Automatically deduplicates aid requests within a 500m radius and scores them based on urgency, preventing resource waste.
+---
 
-### 🗺️ Geospatial Command Center
-- **Proximity Heatmaps**: Visualizing high-demand zones in real-time.
-- **Dispatch Tracker**: 5-stage monitoring (Pending -> Picked -> In Transit -> Near -> Delivered).
-- **Resource Pins**: Live status of warehouses and supply points.
+## 🧭 The Vision: Why We Built This
 
-### 🔐 Transparent Impact Ledger
-- **QR Handshake**: Mutual verification loop between drivers and field volunteers.
-- **Audit Trail**: A transparent record for donors to verify their aid reached its destination.
+Traditional disaster relief often suffers from overlapping efforts and neglected "dark spots." 
+* **Information Asymmetry:** NGOs often lack real-time local situational awareness.
+* **Data Bottlenecks:** Critical cries for help are often trapped in unsearchable WhatsApp voice notes or wet paper surveys.
+* **Lack of Transparency:** Donors lose track of where their contributions actually end up.
+
+**ReliefGRID solves this** by automating the ingestion of chaotic field intelligence and providing a real-time, geospatial visual map of exactly who needs what, and where.
+
+---
+
+## 🛠️ Core Capabilities (How It Works)
+
+We built ReliefGRID so NGOs don't have to change their behavior. They keep using WhatsApp and paper, and our AI does the heavy lifting.
+
+### 🎙️ 1. Multimodal Intel Ingestion
+*Turning chaotic field noise into organized digital tasks.*
+ReliefGRID uses **Google Gemini 1.5 Flash** to instantly extract actionable data from unstructured, messy inputs:
+* **Voice-to-Task:** Translates and structures frantic voice notes with regional language support.
+* **Paper-to-Digital:** AI-powered OCR digitizes handwritten field surveys instantly.
+* **Messaging Integration:** Directly ingests data from WhatsApp and web forms.
+
+### 🧠 2. Smart Matching & Deduplication
+*Ensuring maximum efficiency with zero waste.*
+* The system automatically flags and deduplicates overlapping aid requests within a **500m radius**.
+* It scores every request based on urgency, preventing two delivery trucks from going to the same house while another street gets nothing.
+
+### 🗺️ 3. Geospatial Command Center
+*A live bird's-eye view for NGO coordinators.*
+* **Proximity Heatmaps:** Visualizes high-demand crisis zones in real-time.
+* **Dispatch Tracker:** 5-stage monitoring pipeline (Pending ➔ Picked ➔ In Transit ➔ Near ➔ Delivered).
+* **Resource Pins:** Live status mapping of available warehouses and supply points.
+
+### 🔐 4. Transparent Impact Ledger
+*Rebuilding trust with donors.*
+* **QR Handshake:** A secure, mutual verification loop between delivery drivers and field volunteers.
+* **Audit Trail:** A transparent, digital record proving to donors exactly where and when their aid reached its destination.
 
 ---
 
 ## 🚀 Technology Stack
 
-| Layer | Technology |
+*(Drop your Architecture Diagram image right here!)*
+`![Architecture Diagram](./assets/architecture_diagram.png)`
+
+| Layer | Technology Used |
 | :--- | :--- |
 | **Frontend** | React 19, Vite, Tailwind CSS, Framer Motion |
 | **Mapping** | Leaflet.js, React-Leaflet |
 | **Backend** | Express.ts, Node.js |
-| **Database** | Firebase Firestore |
+| **Database** | Firebase Firestore (Real-time NoSQL) |
 | **AI Engine** | Google Gemini 1.5 Flash |
 
 ---
@@ -53,16 +77,18 @@ Automatically deduplicates aid requests within a 500m radius and scores them bas
 ## 👥 Contributors
 Proudly developed by the **ReliefGRID Core Team**:
 - **Mohammed Absal** ([@mohammedabsal](https://github.com/mohammedabsal))
+- **Haroon** ([@haroon2109](https://github.com/haroon2109))
 - **Madhavan** ([@madhavan-366](https://github.com/madhavan-366))
-- **Mohamed A Haroon** ([@haroon2109](https://github.com/haroon2109))
 
+  
 ---
 
 ## 💻 Local Development
 
-1. **Clone & Install**:
-   ```bash
-   git clone https://github.com/haroon2109/ReliefGrid.git
-   cd ReliefGrid
-   npm install
+Want to run ReliefGRID locally? Follow these steps:
 
+**1. Clone & Install:**
+```bash
+git clone [https://github.com/haroon2109/ReliefGrid.git](https://github.com/haroon2109/ReliefGrid.git)
+cd ReliefGrid
+npm install
