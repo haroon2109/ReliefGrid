@@ -1,9 +1,6 @@
 # 🌍 ReliefGRID
 **AI-Powered Unified Aid Logistics**
 
-[![Google Solution Challenge 2026](https://img.shields.io/badge/Google-Solution_Challenge-blue)](#)
-[![Powered by Gemini](https://img.shields.io/badge/Powered%20by-Gemini_1.5_Flash-purple)](#)
-[![Status](https://img.shields.io/badge/Status-MVP_Live-green)](#)
 
 *ReliefGRID is an intelligence-driven logistics platform designed to bridge the gap between donors, NGOs, and ground-level field operations. We centralize fragmented data, providing a single source of truth for resource allocation during disasters.*
 
@@ -14,8 +11,6 @@
 * **Pitch Video:** [Link to YouTube demo]
 * **Presentation Deck:** [Link to PDF]
 
-*(Drop your "Overwhelmed Volunteer" graphic or Dashboard Mockup image right here!)*
-`![ReliefGrid Dashboard](./assets/dashboard_mockup.png)`
 
 ---
 
