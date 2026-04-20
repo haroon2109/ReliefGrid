@@ -1,8 +1,6 @@
-# ReliefGRID 🌐
+# ReliefGRID 
 ###  AI-Powered Unified Aid Logistics
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
 **ReliefGRID** is an intelligence-driven logistics platform designed to bridge the gap between donors, NGOs, and ground-level field operations. ReliefGRID centralizes fragmented data, providing a single source of truth for resource allocation during disasters.
 
