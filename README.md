@@ -1,4 +1,6 @@
-# 🌍 ReliefGRID
+# <p align="center">
+  <img src="./assets/logo.png" alt="ReliefGRID Logo" width="120"/>
+</p> ReliefGRID
 **AI-Powered Unified Aid Logistics**
 
 
