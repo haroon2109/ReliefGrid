@@ -61,6 +61,7 @@ async function startServer() {
 
   // Security Headers
   app.use(helmet({
+    crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" },
     contentSecurityPolicy: {
       directives: {
         ...helmet.contentSecurityPolicy.getDefaultDirectives(),
@@ -74,7 +75,7 @@ async function startServer() {
           "https://*.basemaps.cartocdn.com",
           "https://*.opentopomap.org",
         ],
-        "script-src": ["'self'", "'unsafe-inline'", "https://*.google.com", "https://*.googleapis.com"],
+        "script-src": ["'self'", "'unsafe-inline'", "https://*.google.com", "https://*.googleapis.com", "https://*.gstatic.com"],
         "connect-src": [
           "'self'",
           "https://*.googleapis.com", "https://*.google.com",
@@ -88,6 +89,7 @@ async function startServer() {
           "https://generativelanguage.googleapis.com",
         ],
         "frame-ancestors": ["'self'", "https://ais-dev-3yuwsxafexnztv4cbjj6ok-802156064276.asia-southeast1.run.app", "https://*.google.com", "https://aistudio.google.com"],
+        "frame-src": ["'self'", "https://*.google.com", "https://*.firebaseapp.com"],
         "worker-src": ["'self'", "blob:"],
       },
     },

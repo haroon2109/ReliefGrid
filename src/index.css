@@ -144,3 +144,32 @@
 .shadow-glow-blue {
   box-shadow: 0 0 15px rgba(37, 99, 235, 0.3);
 }
+
+/* Better Field Accessibility for Mobile */
+@layer utilities {
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  }
+  
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+  }
+  @supports (scrollbar-width: none) {
+    .hide-scrollbar {
+      scrollbar-width: none;
+    }
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  display: inline-block;
+  animation: marquee 20s linear infinite;
+}

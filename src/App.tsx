@@ -210,7 +210,7 @@ export default function App() {
     const provider = new GoogleAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account' });
     try {
-      await signInWithRedirect(auth, provider);
+      await signInWithPopup(auth, provider);
     } catch (error: any) {
       handleAuthError(error);
       setIsLoggingIn(false);
@@ -314,11 +314,11 @@ export default function App() {
 
   if (!user) {
     return (
-      <div className="flex h-screen flex-col items-center justify-center bg-white p-4">
+      <div className="flex h-screen flex-col items-center bg-white p-4 overflow-y-auto">
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="w-full max-w-md rounded-lg border border-slate-200 bg-white p-10"
+          className="my-auto w-full max-w-md shrink-0 rounded-lg border border-slate-200 bg-white p-10"
         >
           <div className="mb-10 flex flex-col items-center text-center">
             <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-md bg-slate-900 text-white">
@@ -357,21 +357,14 @@ export default function App() {
                   <div className="relative flex justify-center text-[10px] uppercase font-bold tracking-widest"><span className="bg-white px-4 text-slate-300">Quick Access</span></div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
+                <div className="flex flex-col gap-3">
                   <button
                     onClick={login}
                     disabled={isLoggingIn}
                     title="Sign in with Google"
-                    className="flex items-center justify-center gap-2 rounded-xl border border-slate-100 py-3 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-all active:scale-[0.98]"
+                    className="w-full flex items-center justify-center gap-2 rounded-xl border border-slate-100 py-3 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-all active:scale-[0.98]"
                   >
                     <Globe size={16} /> Google
-                  </button>
-                  <button
-                    onClick={() => setAuthMode('phone')}
-                    title="Sign in with Phone"
-                    className="flex items-center justify-center gap-2 rounded-xl border border-slate-100 py-3 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-all active:scale-[0.98]"
-                  >
-                    <Phone size={16} /> Phone
                   </button>
                 </div>
               </motion.div>
@@ -422,7 +415,7 @@ export default function App() {
                     disabled={isLoggingIn}
                     className="w-full rounded-md bg-slate-900 py-3.5 text-sm font-bold text-white hover:bg-slate-800 transition-all disabled:opacity-50"
                   >
-                    {isLoggingIn ? 'Processing...' : (isRegistering ? 'Register' : 'Sign In')}
+                    {isLoggingIn ? 'Submit' : (isRegistering ? 'Register' : 'Sign In')}
                   </button>
                   <button
                     type="button"
@@ -435,75 +428,7 @@ export default function App() {
               </motion.div>
             )}
 
-            {authMode === 'phone' && (
-              <motion.div 
-                key="phone"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-              >
-                <button 
-                  onClick={() => { setAuthMode('select'); setLoginError(null); setConfirmationResult(null); }}
-                  className="mb-4 flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-700"
-                >
-                  <ArrowLeft size={16} />
-                  Back
-                </button>
-                <h2 className="mb-6 text-xl font-bold text-slate-900">Phone Authentication</h2>
-                
-                {!confirmationResult ? (
-                  <form onSubmit={handlePhoneSignIn} className="space-y-4">
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Phone Number</label>
-                      <div className="flex items-center gap-2 rounded-md border border-slate-200 px-4 py-3 text-sm focus-within:border-slate-900 transition-colors">
-                        <span className="text-slate-500 font-semibold shrink-0">+91</span>
-                        <div className="w-px h-4 bg-slate-200" />
-                        <input 
-                          type="tel" 
-                          required
-                          maxLength={10}
-                          pattern="[0-9]{10}"
-                          value={phoneNumber.replace(/^\+?91/, '')}
-                          onChange={(e) => setPhoneNumber('+91' + e.target.value.replace(/\D/g, '').slice(0, 10))}
-                          className="flex-1 outline-none bg-transparent placeholder:text-slate-400"
-                          placeholder="98765 43210"
-                        />
-                      </div>
-                      <p className="mt-1.5 text-[10px] text-slate-400">Enter your 10-digit mobile number</p>
-                    </div>
-                    <div id="recaptcha-container"></div>
-                    <button
-                      type="submit"
-                      disabled={isLoggingIn}
-                      className="w-full rounded-md bg-slate-900 py-3.5 text-sm font-bold text-white hover:bg-slate-800 transition-all disabled:opacity-50"
-                    >
-                      {isLoggingIn ? 'Sending Code...' : 'Send Verification Code'}
-                    </button>
-                  </form>
-                ) : (
-                  <form onSubmit={handleVerifyCode} className="space-y-4">
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Verification Code</label>
-                      <input 
-                        type="text" 
-                        required
-                        value={verificationCode}
-                        onChange={(e) => setVerificationCode(e.target.value)}
-                        className="w-full rounded-md border border-slate-200 px-4 py-3 text-sm focus:border-slate-900 focus:outline-none focus:ring-0 transition-colors"
-                        placeholder="123456"
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      disabled={isLoggingIn}
-                      className="w-full rounded-md bg-slate-900 py-3.5 text-sm font-bold text-white hover:bg-slate-800 transition-all disabled:opacity-50"
-                    >
-                      {isLoggingIn ? 'Verifying...' : 'Verify & Sign In'}
-                    </button>
-                  </form>
-                )}
-              </motion.div>
-            )}
+
           </AnimatePresence>
 
           {loginError && (
@@ -568,11 +493,11 @@ export default function App() {
 
   if (user && user.email && !user.emailVerified) {
     return (
-      <div className="flex h-screen flex-col items-center justify-center bg-slate-50 p-4">
+      <div className="flex h-screen flex-col items-center bg-slate-50 p-4 overflow-y-auto">
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="w-full max-w-md rounded-3xl bg-white p-10 shadow-2xl text-center border border-slate-100"
+          className="my-auto w-full max-w-md shrink-0 rounded-3xl bg-white p-10 shadow-2xl text-center border border-slate-100"
         >
           <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-blue-50 text-blue-600 shadow-inner">
             <Mail size={48} className="animate-pulse" />
